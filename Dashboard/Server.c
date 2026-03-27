@@ -7,10 +7,14 @@
 #include "esp_log.h"
 #include "esp_http_server.h"
 
-#include "TempSensor.h"
-#include "Queues.h"
-#include "Relay.h"
-#include "Servo.h"
+#include "../Capteurs/Temperature/TempSensor.h"
+#include "../Capteurs/Lumiere/LightSensor.h"
+#include "../Capteurs/Eau/WaterSensor.h"
+#include "../Capteurs/Moisissure/MoistureSensor.h"
+#include "../Capteurs/Gaz/gas_sensor.h"
+#include "../Synchronisation/Queues.h"
+#include "../Actionneurs/Relais/Relay.h"
+#include "../Actionneurs/ServoMoteur/Servo.h"
 
 static const char *TAG = "WEB_SENSOR";
 

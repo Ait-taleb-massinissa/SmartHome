@@ -4,7 +4,7 @@
 #include "driver/adc.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "Queues.h"
+#include "../Synchronisation/Queues.h"
 
 #define ADC_CHANNEL ADC1_CHANNEL_7 // GPIO35
 #define R0 10000.0                 // 10k ohm

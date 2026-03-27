@@ -4,7 +4,7 @@
 #include "driver/adc.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "Queues.h"
+#include "../Synchronisation/Queues.h"
 
 #define ADC_CHANNEL ADC1_CHANNEL_0 // GPIO36 (VP)
 #define ADC_MAX 4095

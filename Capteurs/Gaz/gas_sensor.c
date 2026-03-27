@@ -1,7 +1,7 @@
 #include "gas_sensor.h"
 #include "esp_adc_cal.h"
 #include "esp_log.h"
-#include "Queues.h"
+#include "../Synchronisation/Queues.h"
 
 static const char *TAG = "GAS_SENSOR";
 
@@ -14,9 +14,9 @@ static void gas_task(void *pvParameters)
 {
     gas_sensor_init();
     // PRÉCHAUFFAGE: Les capteurs MQ ont besoin de 20-30 secondes
-    ESP_LOGI("gaz","⏳ Préchauffage capteur MQ (30s)...\n");
+    ESP_LOGI("gaz", "⏳ Préchauffage capteur MQ (30s)...\n");
     vTaskDelay(pdMS_TO_TICKS(30000)); // Attendre 30 secondes
-    ESP_LOGI("gaz","✅ Capteur MQ prêt!\n");
+    ESP_LOGI("gaz", "✅ Capteur MQ prêt!\n");
 
     while (1)
     {

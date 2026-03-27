@@ -1,8 +1,8 @@
 #include "EventGroup.h"
 #include "freertos/event_groups.h"
 #include "freertos/FreeRTOS.h"
-#include "Relay.h"
-#include "Servo.h"
+#include "../Actionneurs/Relais/Relay.h"
+#include "../Actionneurs/ServoMoteur/Servo.h"
 #include "esp_log.h"
 
 #define BIT_GAZ_ALERT (1 << 0)

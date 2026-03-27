@@ -4,7 +4,7 @@
 #include "driver/adc.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "Queues.h"
+#include "../Synchronisation/Queues.h"
 #include "esp_log.h"
 
 #define WATER_ADC ADC1_CHANNEL_4 // GPIO32

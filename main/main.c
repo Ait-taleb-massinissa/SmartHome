@@ -1,27 +1,26 @@
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "TempSensor.h"
-#include "LightSensor.h"
-#include "WaterSensor.h"
-#include "MoistureSensor.h"
-#include "Relay.h"
-#include "StepMotor.h"
+#include "../Capteurs/Temperature/TempSensor.h"
+#include "../Capteurs/Lumiere/LightSensor.h"
+#include "../Capteurs/Eau/WaterSensor.h"
+#include "../Capteurs/Moisissure/MoistureSensor.h"
+#include "../Capteurs/Gaz/gas_sensor.h"
+#include "../Actionneurs/Relais/Relay.h"
+#include "../Actionneurs/StepMoteur/StepMotor.h"
+#include "../Actionneurs/ServoMoteur/Servo.h"
 #include "nvs_flash.h"
-#include "Server.h"
+#include "../Dashboard/Server.h"
 #include "esp_log.h"
 #include "esp_wifi.h"
-#include "wifi.h"
-#include "Queues.h"
-#include "Servo.h"
-#include "gas_sensor.h"
-#include "EventGroup.h"
-#include "Lamp.h"
-#include "log_buffer.h"
+#include "../Dashboard/log_buffer.h"
+#include "../Dashboard/wifi.h"
+#include "../Synchronisation/Queues.h"
+#include "../Synchronisation/EventGroup.h"
 
 void app_main(void)
 {
-  
+
     log_buffer_init();
 
     create_queues();
