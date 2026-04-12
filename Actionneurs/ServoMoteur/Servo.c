@@ -7,11 +7,13 @@ static const char *TAG = "SERVO";
 // Convertir un angle en duty cycle PWM
 static void servo_set_angle(ledc_channel_t channel, int angle)
 {
-    if (angle < 0) angle = 0;
-    if (angle > 180) angle = 180;
+    if (angle < 0)
+        angle = 0;
+    if (angle > 180)
+        angle = 180;
 
     uint32_t pulse = 500 + ((2500 - 500) * angle / 180); // 0.5ms -> 2.5ms
-    uint32_t duty = (pulse * 16384) / 20000; // timer 14-bit, 20ms period
+    uint32_t duty = (pulse * 16384) / 20000;             // timer 14-bit, 20ms period
 
     ledc_set_duty(LEDC_LOW_SPEED_MODE, channel, duty);
     ledc_update_duty(LEDC_LOW_SPEED_MODE, channel);
@@ -22,10 +24,16 @@ static ledc_channel_t get_servo_channel(gpio_num_t gpio)
 {
     switch (gpio)
     {
-        case GPIO_NUM_18: return LEDC_CHANNEL_0;
-        case GPIO_NUM_19: return LEDC_CHANNEL_1;
-        case GPIO_NUM_21: return LEDC_CHANNEL_2;
-        default: return LEDC_CHANNEL_1;
+    case GPIO_NUM_18:
+        return LEDC_CHANNEL_0;
+    case GPIO_NUM_19:
+        return LEDC_CHANNEL_1;
+    case GPIO_NUM_21:
+        return LEDC_CHANNEL_2;
+    case GPIO_NUM_27:
+        return LEDC_CHANNEL_3; // ✅ ADDED GPIO27
+    default:
+        return LEDC_CHANNEL_0;
     }
 }
 
@@ -41,8 +49,7 @@ void servo_init(gpio_num_t gpio)
             .duty_resolution = LEDC_TIMER_14_BIT,
             .timer_num = LEDC_TIMER_1,
             .freq_hz = 50,
-            .clk_cfg = LEDC_AUTO_CLK
-        };
+            .clk_cfg = LEDC_AUTO_CLK};
         ledc_timer_config(&timer_conf);
         timer_init = true;
     }
@@ -55,8 +62,7 @@ void servo_init(gpio_num_t gpio)
         .channel = channel,
         .timer_sel = LEDC_TIMER_1,
         .duty = 0,
-        .hpoint = 0
-    };
+        .hpoint = 0};
     ledc_channel_config(&channel_conf);
 
     // Position initiale: fermée
@@ -88,5 +94,3 @@ void servo_set_position(gpio_num_t gpio, int angle)
     ESP_LOGI(TAG, "Servo GPIO%d -> %d degrés", gpio, angle);
     servo_set_angle(channel, angle);
 }
-
-

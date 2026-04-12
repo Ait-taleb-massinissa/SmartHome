@@ -119,13 +119,13 @@ void water_queue_handler(void *pvParameters)
     {
         if (xQueueReceive(WaterQueue, &water_status, portMAX_DELAY))
         {
-            if (water_status < 1200 && !water_alert)
+            if (water_status < 1000 && !water_alert)
             {
                 ESP_LOGI("WATER_QUEUE", "🚨 WATER NEEDED! Status: %d \n", water_status);
                 water_alert = true;
                 xEventGroupSetBits(event_group_handle, BIT_WATER_ALERT);
             }
-            else if (water_status >= 1200 && water_alert)
+            else if (water_status >= 1000 && water_alert)
             {
                 ESP_LOGI("WATER_QUEUE", "✅ Water normal. Status: %d \n", water_status);
                 water_alert = false;

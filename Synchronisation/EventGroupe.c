@@ -148,13 +148,14 @@ void water_event_group_handler(void *pvParameters)
         if (bits & BIT_WATER_ALERT)
         {
             ESP_LOGW("EVENT_GROUP", "🚨 WATER NEEDED DETECTED!");
-            relay_on(GPIO_NUM_22);
+            servo_ouvrir(GPIO_NUM_21);
         }
 
         if (bits & BIT_WATER_NORMAL)
         {
             ESP_LOGI("EVENT_GROUP", "✅ Water normal.");
-            relay_off(GPIO_NUM_22);
+            servo_fermer(GPIO_NUM_21);
+
             vTaskDelay(pdMS_TO_TICKS(2000));
         }
     }

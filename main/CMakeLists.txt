@@ -6,5 +6,8 @@ idf_component_register(SRCS "../Dashboard/log_buffer.c" "../Dashboard/Server.c" 
                     "../Capteurs/Gaz/gas_sensor.c"
                     "../Actionneurs/Relais/Relay.c"
                     "../Actionneurs/StepMoteur/StepMotor.c"
+                    "../Actionneurs/LED/led.c"
+                    "../Capteurs/Mouvement/Mouvement.c"
+                    "../Capteurs/rfid/rfid.c"
 
                     INCLUDE_DIRS ".")
